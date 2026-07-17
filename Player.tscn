@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dpodrbei4j3vv"]
+
+[ext_resource type="Script" uid="uid://b1lqt0hd27ah8" path="res://player.gd" id="1_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://c68q7h1xrim3n" path="res://assets/path1.png" id="2_kpjcp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kpjcp"]
+friction = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kne1u"]
+radius = 9.0
+height = 124.0
+
+[node name="Skateboard" type="RigidBody2D" unique_id=896650125]
+physics_material_override = SubResource("PhysicsMaterial_kpjcp")
+script = ExtResource("1_kpjcp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=354197207]
+texture = ExtResource("2_kpjcp")
+
+[node name="RayCast2D_Vorne" type="RayCast2D" parent="." unique_id=1526816057]
+position = Vector2(30, 17)
+target_position = Vector2(0, 14)
+
+[node name="RayCast2D_Hinten" type="RayCast2D" parent="." unique_id=1778377365]
+position = Vector2(-30, 17)
+target_position = Vector2(0, 14)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1001441675]
+position = Vector2(30, 10)
+shape = SubResource("CircleShape2D_kpjcp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619734341]
+position = Vector2(-30, 10)
+shape = SubResource("CircleShape2D_kpjcp")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=991442469]
+position = Vector2(0, -10)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_kne1u")

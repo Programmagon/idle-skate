@@ -1,0 +1,45 @@
+[gd_scene format=4 uid="uid://os382br8qkw2"]
+
+[ext_resource type="PackedScene" uid="uid://dpodrbei4j3vv" path="res://Player.tscn" id="1_wbfu4"]
+[ext_resource type="Texture2D" uid="uid://dugcww46lwyc8" path="res://assets/polished-concrete-3000-mm-architextures.jpg" id="2_u44n3"]
+[ext_resource type="PackedScene" uid="uid://cy735bs3han68" path="res://touch_controls/touch_controls.tscn" id="3_u44n3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb48q"]
+texture = ExtResource("2_u44n3")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, 50, -50, 50)
+
+[sub_resource type="TileSet" id="TileSet_t88pq"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sb48q")
+
+[node name="Game" type="Node2D" unique_id=331439144]
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=743160367]
+tile_map_data = PackedByteArray("AAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAD9/wAAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAABAAAAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_t88pq")
+
+[node name="Skateboard" parent="." unique_id=896650125 instance=ExtResource("1_wbfu4")]
+position = Vector2(-69.00002, -363.99997)
+
+[node name="Camera2D" type="Camera2D" parent="Skateboard" unique_id=2060275242]
+limit_enabled = false
+limit_top = -350
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Control" type="Control" parent="." unique_id=1074370051]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TouchControls" parent="Control" unique_id=1517481120 instance=ExtResource("3_u44n3")]

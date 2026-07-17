@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cy735bs3han68"]
+
+[ext_resource type="Texture2D" uid="uid://bfp1t1nobxx20" path="res://icon.svg" id="1_pr864"]
+
+[node name="TouchControls" type="CanvasLayer" unique_id=1517481120]
+
+[node name="AnchorBottomRight" type="Control" parent="." unique_id=1882382102]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -648.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ButtonJump" type="TouchScreenButton" parent="AnchorBottomRight" unique_id=1912077936]
+position = Vector2(960, 448)
+texture_normal = ExtResource("1_pr864")
+action = "jump"
+
+[node name="AnchorBottomLeft" type="Control" parent="." unique_id=1945627238]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_vertical = 0
+
+[node name="ButtonSteerRight" type="TouchScreenButton" parent="AnchorBottomLeft" unique_id=1668812196]
+position = Vector2(256, 448)
+texture_normal = ExtResource("1_pr864")
+action = "steer_right"
+
+[node name="ButtonSteerLeft" type="TouchScreenButton" parent="AnchorBottomLeft" unique_id=1743662382]
+position = Vector2(64, 448)
+texture_normal = ExtResource("1_pr864")
+action = "steer_left"
