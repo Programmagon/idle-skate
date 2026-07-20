@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cy735bs3han68"]
 
-[ext_resource type="Texture2D" uid="uid://bfp1t1nobxx20" path="res://icon.svg" id="1_pr864"]
+[ext_resource type="Texture2D" uid="uid://c18uid8kuu1gx" path="res://assets/button-left.png" id="1_1ktim"]
+[ext_resource type="Texture2D" uid="uid://cw48ryqq7plum" path="res://assets/button-reset.png" id="2_88rfo"]
 
 [node name="TouchControls" type="CanvasLayer" unique_id=1517481120]
 
@@ -19,9 +20,17 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="ButtonJump" type="TouchScreenButton" parent="AnchorBottomRight" unique_id=1912077936]
-position = Vector2(960, 448)
-texture_normal = ExtResource("1_pr864")
+position = Vector2(1088, 448.00006)
+rotation = 1.5707964
+scale = Vector2(2.0245185, 1.9999971)
+texture_normal = ExtResource("1_1ktim")
 action = "jump"
+
+[node name="ButtonReset" type="TouchScreenButton" parent="AnchorBottomRight" unique_id=72122380]
+position = Vector2(768, 448)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_88rfo")
+action = "reset"
 
 [node name="AnchorBottomLeft" type="Control" parent="." unique_id=1945627238]
 layout_mode = 3
@@ -33,11 +42,14 @@ offset_bottom = -648.0
 grow_vertical = 0
 
 [node name="ButtonSteerRight" type="TouchScreenButton" parent="AnchorBottomLeft" unique_id=1668812196]
-position = Vector2(256, 448)
-texture_normal = ExtResource("1_pr864")
+position = Vector2(384, 576)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_1ktim")
 action = "steer_right"
 
 [node name="ButtonSteerLeft" type="TouchScreenButton" parent="AnchorBottomLeft" unique_id=1743662382]
 position = Vector2(64, 448)
-texture_normal = ExtResource("1_pr864")
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_1ktim")
 action = "steer_left"

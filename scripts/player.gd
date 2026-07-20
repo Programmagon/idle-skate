@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var push_force = 1500.0
-@export var max_speed: float = 400.0
+@export var max_speed: float = 700.0
 
 # --- Balance & Stabilization ---
 @export var balance_force = 1000.0  # How strongly the skateboarder stabilizes the board
@@ -14,10 +14,12 @@ extends RigidBody2D
 
 @onready var ray_front: RayCast2D = $RayCast2D_Vorne
 @onready var ray_back: RayCast2D = $RayCast2D_Hinten
+@onready var player: Sprite2D = $Sprite2D2
 
 var is_jumping = false
 var position_left: Vector2
 var position_right: Vector2
+var cheats_enabled = false
 
 func _ready():
 	if ray_front.position.x > ray_back.position.x:
@@ -29,16 +31,19 @@ func _ready():
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("jump") and not is_jumping:
-		var is_grounded = ray_front.is_colliding() or ray_back.is_colliding()
-		if is_grounded:
+		if is_grounded():
 			start_ollie()
 			
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	if Input.is_action_just_pressed("activate_cheats") or (Input.is_action_just_pressed("steer_left") and Input.is_action_just_pressed("steer_right")):
+		cheats_enabled = !cheats_enabled
+		
+	player.visible = cheats_enabled
+		
 
 func _integrate_forces(state):
-	var is_grounded = ray_front.is_colliding() or ray_back.is_colliding()
-	
 	# Determine driving direction
 	var is_moving_left = linear_velocity.x < -10
 	var is_moving_right = linear_velocity.x > 10
@@ -51,7 +56,7 @@ func _integrate_forces(state):
 		ray_back.position = position_left
 	
 	# --- Balance System ---
-	if is_grounded and not is_jumping:
+	if is_grounded() and not is_jumping:
 		# Get the normal vector of the ground (where the ground points)
 		var ground_normal = Vector2.UP
 		if ray_front.is_colliding():
@@ -87,3 +92,9 @@ func start_ollie():
 	
 	await get_tree().create_timer(0.2).timeout
 	is_jumping = false
+
+func is_grounded():
+	if cheats_enabled:
+		return true
+	else:
+		return ray_front.is_colliding() or ray_back.is_colliding()
